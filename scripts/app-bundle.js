@@ -186,6 +186,34 @@ define('environment',["exports"], function (exports) {
     testing: true
   };
 });
+define('hello',['exports'], function (exports) {
+    'use strict';
+
+    Object.defineProperty(exports, "__esModule", {
+        value: true
+    });
+
+    function _classCallCheck(instance, Constructor) {
+        if (!(instance instanceof Constructor)) {
+            throw new TypeError("Cannot call a class as a function");
+        }
+    }
+
+    var Hello = exports.Hello = function () {
+        function Hello() {
+            _classCallCheck(this, Hello);
+
+            this.firstName = 'Mike';
+            this.lastName = 'Zhang';
+        }
+
+        Hello.prototype.sayHello = function sayHello() {
+            alert('Hello ' + this.firstName + ' ' + this.lastName + '. Nice to meet you.');
+        };
+
+        return Hello;
+    }();
+});
 define('main',['exports', './environment'], function (exports, _environment) {
   'use strict';
 
@@ -468,5 +496,6 @@ define('text!app.html', ['module'], function(module) { module.exports = "<templa
 define('text!styles.css', ['module'], function(module) { module.exports = "body { padding-top: 70px; }\n\nsection {\n  margin: 0 20px;\n}\n\na:focus {\n  outline: none;\n}\n\n.navbar-nav li.loader {\n    margin: 12px 24px 0 6px;\n}\n\n.no-selection {\n  margin: 20px;\n}\n\n.contact-list {\n  overflow-y: auto;\n  border: 1px solid #ddd;\n  padding: 10px;\n}\n\n.panel {\n  margin: 20px;\n}\n\n.button-bar {\n  right: 0;\n  left: 0;\n  bottom: 0;\n  border-top: 1px solid #ddd;\n  background: white;\n}\n\n.button-bar > button {\n  float: right;\n  margin: 20px;\n}\n\nli.list-group-item {\n  list-style: none;\n}\n\nli.list-group-item > a {\n  text-decoration: none;\n}\n\nli.list-group-item.active > a {\n  color: white;\n}\n"; });
 define('text!contact-detail.html', ['module'], function(module) { module.exports = "<template>\r\n    <div class=\"panel panel-primary\">\r\n        <div class=\"panel-heading\">\r\n            <h3 class=\"panel-title\">Profile</h3>\r\n        </div>\r\n        <div class=\"panel-body\">\r\n            <form role=\"form\" class=\"form-horizontal\">\r\n                <div class=\"form-group\">\r\n                    <label class=\"col-sm-2 control-label\">First Name</label>\r\n                    <div class=\"col-sm-10\">\r\n                        <input type=\"text\" placeholder=\"first name\" class=\"form-control\" value.bind=\"contact.firstName\"></input>\r\n                    </div>\r\n                </div>\r\n                <div class=\"form-group\">\r\n                    <label class=\"col-sm-2 control-label\">Last Name</label>\r\n                    <div class=\"col-sm-10\">\r\n                        <input type=\"text\" placeholder=\"last name\" class=\"form-control\" value.bind=\"contact.lastName\"></input>\r\n                    </div>\r\n                </div>\r\n                <div class=\"form-group\">\r\n                    <label class=\"col-sm-2 control-label\">Email</label>\r\n                    <div class=\"col-sm-10\">\r\n                        <input type=\"text\" placeholder=\"email\" class=\"form-control\" value.bind=\"contact.email\"></input>\r\n                    </div>\r\n                </div>\r\n                <div class=\"form-group\">\r\n                    <label class=\"col-sm-2 control-label\">Phone Number</label>\r\n                    <div class=\"col-sm-10\">\r\n                        <input type=\"text\" placeholder=\"phone number\" class=\"form-control\" value.bind=\"contact.phoneNumber\"></input>\r\n                    </div>\r\n                </div>\r\n            </form>\r\n        </div>\r\n    </div>\r\n    <div class=\"button-bar\">\r\n        <button class=\"btn btn-success\" click.delegate=\"save()\" disabled.bind=\"!canSave\">Save</button>\r\n    </div>\r\n</template>"; });
 define('text!contact-list.html', ['module'], function(module) { module.exports = "<template>\r\n    <div class=\"contact-list\">\r\n        <ul class=\"list-group\">\r\n            <li repeat.for = \"contact of contacts\" class=\"list-group-item ${contact.id === $parent.selectedId ? 'active' : ''}\">\r\n                <a route-href=\"route: contacts; params.bind:{id: contact.id}\" click.delegate=\"$parent.select(contact)\">\r\n                    <h4 class=\"list-group-item-heading\">${contact.firstName} ${contact.lastName}</h4>\r\n                    <p class=\"list-group-item-text\">${contact.email}</p>\r\n                </a>\r\n            </li>\r\n        </ul>\r\n    </div>\r\n</template>"; });
+define('text!hello.html', ['module'], function(module) { module.exports = "<template>\r\n    <input value.bind=\"firstName\">\r\n    <input value.bind=\"lastName\">\r\n    <button click.trigger=\"sayHello()\">Say Hello</button>\r\n</template>"; });
 define('text!no-selection.html', ['module'], function(module) { module.exports = "<template>\r\n    <div class=\"no-selection text-center\">\r\n        <h2>${message}</h2>\r\n    </div>\r\n</template>"; });
 //# sourceMappingURL=app-bundle.js.map
